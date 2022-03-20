@@ -16,7 +16,8 @@ class BookController extends Controller
     {
         $books = Book::query()
             ->orderBy('created_at', 'DESC')
-            ->paginate();
+            ->where('user_id', auth()->id())
+            ->paginate(10);
 
         return view('books.index', [
             'books' => $books
@@ -115,6 +116,5 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
         $book->delete();
         return redirect()->route('books.index')->with('success', 'Book deleted successfully');
-
     }
 }

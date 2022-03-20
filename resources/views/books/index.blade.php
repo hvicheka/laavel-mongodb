@@ -47,6 +47,8 @@
                             @endforelse
 
                         </table>
+
+                        {{ $books->links() }}
                     </div>
                 </div>
             </div>
